@@ -24,17 +24,16 @@
 [build.processing.images]
   compress = true
 
-# Long cache lifetime for versioned static assets (safe since filenames
-# don't change unless content does — Netlify handles cache invalidation)
+# Revalidate static assets so visitors receive the latest deployed files.
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
-  for = "/*.css"
+  for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Security headers, applied to every response
 [[headers]]
